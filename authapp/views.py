@@ -50,5 +50,5 @@ def profile(request):
             return HttpResponseRedirect(reverse('users:profile'))
     else:
         form = UserProfileForm(instance=request.user)
-    content = {'title': 'GeekShop - Личный кабинет', 'form': form, 'baskets': Basket.objects.all()}
+    content = {'title': 'GeekShop - Личный кабинет', 'form': form, 'baskets': Basket.objects.filter(user=request.user)}
     return render(request, 'authapp/profile.html', content)
